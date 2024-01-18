@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
 const User = require("./../models/User.model");
+const { isAuthenticated } = require("../middlewares/verifyToken.middleware");
 
 router.post("/signup", (req, res, next) => {
   const { username, password, role } = req.body;
@@ -66,6 +67,10 @@ router.post("/login", (req, res, next) => {
       }
     })
     .catch((err) => next(err));
+});
+
+router.get("/verify", isAuthenticated, (req, res, next) => {
+  console.log("EL USER TIENE UN TOKEN, SUS DATOS SON", req.payload);
 });
 
 module.exports = router;
