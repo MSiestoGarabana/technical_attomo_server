@@ -4,6 +4,7 @@ const Game = require("./../models/Game.model");
 
 router.get("/getAllGames", (req, res) => {
   Game.find()
+    .sort({ votesReceived: -1 })
     .then((response) => res.json(response))
     .catch((err) => res.status(500).json(err));
 });
@@ -25,9 +26,13 @@ router.post("/createGame", (req, res) => {
 
 router.put("/editGame/:_id", (req, res) => {
   const { _id } = req.params;
-  const { image, title, category } = req.body;
+  const { image, title, category, votesReceived } = req.body;
 
-  Game.findByIdAndUpdate(_id, { image, title, category }, { new: true })
+  Game.findByIdAndUpdate(
+    _id,
+    { image, title, category, votesReceived },
+    { new: true }
+  )
     .then((response) => res.json(response))
     .catch((err) => next(err));
 });
