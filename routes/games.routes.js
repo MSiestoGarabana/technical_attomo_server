@@ -17,8 +17,8 @@ router.get("/getGameById/:_gameId", (req, res) => {
 });
 
 router.post("/createGame", (req, res) => {
-  const { _id, image, title, category, votesReceived, comments } = req.body;
-  Game.create({ _id, image, title, category, votesReceived, comments })
+  const { image, title, category } = req.body;
+  Game.create({ image, title, category })
     .then((response) => res.json(response))
     .catch((err) => res.status(500).json(err));
 });
