@@ -61,7 +61,7 @@ router.post("/login", (req, res, next) => {
           algorithm: "HS256",
           expiresIn: "72h",
         });
-        res.status(200).json({ authToke: authToken });
+        res.status(200).json({ authToken: authToken });
       } else {
         res.status(401).json({ message: "Unable to authenticate the user" });
       }
@@ -70,7 +70,7 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("/verify", isAuthenticated, (req, res, next) => {
-  console.log("EL USER TIENE UN TOKEN, SUS DATOS SON", req.payload);
+  res.status(200).json(req.payload);
 });
 
 module.exports = router;
