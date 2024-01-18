@@ -20,6 +20,12 @@ const gameSchema = new Schema(
       type: Number,
       default: 0,
     },
+    votedBy: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     comments: [
       {
         type: Schema.Types.ObjectId,
