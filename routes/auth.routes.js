@@ -27,8 +27,8 @@ router.post("/signup", (req, res, next) => {
     })
 
     .then((createdUser) => {
-      const { email, username, _id, role } = createdUser;
-      const user = { email, username, _id, role };
+      const { username, _id, role } = createdUser;
+      const user = { username, _id, role };
 
       res.status(201).json({ user });
     })
@@ -39,22 +39,22 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (email === "" || password === "") {
+  if (username === "" || password === "") {
     res.status(400).json({ message: "Provide email and password." });
     return;
   }
 
-  User.findOne({ email })
+  User.findOne({ username })
     .then((foundUser) => {
       if (!foundUser) {
         res.status(401).json({ message: "User not found." });
         return;
       }
       if (bcrypt.compareSync(password, foundUser.password)) {
-        const { _id, email, username } = foundUser;
-        const payload = { _id, email, username };
+        const { _id, username } = foundUser;
+        const payload = { _id, username };
 
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: "HS256",
