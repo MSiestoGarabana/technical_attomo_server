@@ -49,10 +49,14 @@ router.put("/deductVote/:_id", (req, res) => {
   const { _id: game_id } = req.params;
   const { user_id } = req.body;
 
-  Game.findByIdAndUpdate(game_id, {
-    $pull: { votedBy: user_id },
-    $inc: { votesReceived: -1 },
-  })
+  Game.findByIdAndUpdate(
+    game_id,
+    {
+      $pull: { votedBy: user_id },
+      $inc: { votesReceived: -1 },
+    },
+    { new: true }
+  )
     .then((response) => res.json(response))
     .catch((err) => next(err));
 });

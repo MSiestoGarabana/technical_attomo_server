@@ -19,7 +19,7 @@ const userSchema = new Schema(
       enum: ["ADMIN", "USER"],
       default: "USER",
     },
-    availablevotes: {
+    availableVotes: {
       type: Number,
       default: 5,
     },
