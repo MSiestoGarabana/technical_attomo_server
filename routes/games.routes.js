@@ -24,11 +24,10 @@ router.post("/createGame", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.put("/editGame/:_id", (req, res) => {
-  const { _id } = req.params;
-  const { image, title, category, votesReceived } = req.body;
+router.put("/editGame", (req, res) => {
+  const { image, title, category, game_id } = req.body;
 
-  Game.findByIdAndUpdate(_id, { image, title, category }, { new: true })
+  Game.findByIdAndUpdate(game_id, { image, title, category }, { new: true })
     .then((response) => res.json(response))
     .catch((err) => next(err));
 });
