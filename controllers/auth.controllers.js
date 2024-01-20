@@ -67,8 +67,13 @@ const login = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-const verify = (req, res, next) => {
-  res.status(200).json(req.payload);
+const verify = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ _id: req.payload._id });
+    res.status(200).json(user);
+  } catch (e) {
+    next(e);
+  }
 };
 
 module.exports = {
