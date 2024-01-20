@@ -2,6 +2,8 @@
 
 1. For local testing install dependencies
 
+#### Local testing recommended. Uploading images into Cloudinary isn´t still working properly in the deployed version. :expressionless:
+
 ```
 npm install
 ```
@@ -25,9 +27,9 @@ npm run dev
 
 Base URL.
 
-- https://technical-attomo-server.vercel.app/api
+- https://technical-attomo-server.vercel.app/api/
 
-## Games Routes
+## /games
 
 | HTTP Method | URI path           | Description               |
 | ----------- | ------------------ | ------------------------- |
@@ -38,3 +40,24 @@ Base URL.
 | PUT         | `/addVote/:_id`    | Add vote to game          |
 | PUT         | `/deductVote/:_id` | Deduct vote to game       |
 | DELETE      | `/deleteGame/:id`  | Delete game               |
+
+## /auth
+
+| HTTP Method | URI path  | Description       |
+| ----------- | --------- | ----------------- |
+| POST        | `/signup` | User sign up      |
+| POST        | `/login`  | User login        |
+| GET         | `/verify` | User verification |
+
+## /users
+
+| HTTP Method | URI path                    | Description       |
+| ----------- | --------------------------- | ----------------- |
+| PUT         | `/substractVoteToUser/:_id` | availableVotes -1 |
+| PUT         | `/addVoteToUser/:_id`       | availableVotes+1  |
+
+## /upload
+
+| HTTP Method | URI path | Description             |
+| ----------- | -------- | ----------------------- |
+| POST        | `/image` | cloudinary upload image |
