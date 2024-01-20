@@ -4,11 +4,11 @@ const commentSchema = new Schema(
   {
     author: {
       type: String,
-      required: [true, "Category field cannot be empty"],
+      required: [true, "Author field cannot be empty"],
     },
     text: {
       type: String,
-      required: [true, "Category field cannot be empty"],
+      required: [true, "Text field cannot be empty"],
     },
     votesReceived: {
       type: Number,
