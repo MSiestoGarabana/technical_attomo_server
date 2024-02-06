@@ -1,10 +1,7 @@
 ## technical-attomo-server
+You can check the live version here: https://technical-attomo-client.vercel.app/
 
 1. For local testing install dependencies
-
-Local testing recommended. Uploading images into Cloudinary isn´t still working properly in the deployed version. :expressionless:
-
-However , you can check the live version here: https://technical-attomo-client.vercel.app/
 
 ```
 npm install
